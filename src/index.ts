@@ -3,13 +3,15 @@ import 'p5/lib/addons/p5.sound';
 import * as p5 from 'p5';
 import { Prueba } from './prueba/prueba.js';
 
+let sound: p5.SoundFile;
+
 const sketch = (p: p5) => {
   const canvasWidth = 800;
   const canvasHeight = 600;
-  let sound: p5.SoundFile;
   let fft: p5.FFT;
 
   p.preload = () => {
+    p.soundFormats('mp3')
     sound = p.loadSound(
       'https://raw.githubusercontent.com/yosshitaku067/images-for-stackblitz/main/marbletechno1.mp3'
     );
@@ -17,9 +19,8 @@ const sketch = (p: p5) => {
 
   p.setup = () => {
     let cnv = p.createCanvas(canvasWidth, canvasHeight);
-    cnv.mouseClicked(()=>{
-        sound.loop();
-    });
+    console.log("Buenas");
+    cnv.mouseClicked(togglePlay);
     fft = new p5.FFT(0.2, 8192);
     fft.setInput(sound);
   };
@@ -56,4 +57,15 @@ const sketch = (p: p5) => {
 
 new p5(sketch);
 
+
+
+
+
+function togglePlay() {
+  if(sound.isPlaying()){
+    sound.pause();
+  }else{
+    sound.loop();
+  }
+}
 
