@@ -25,7 +25,15 @@ export class Sound{
         this.p.stroke(255-pos,255,pos);
         this.p.strokeWeight(5);
         for(let i = 100; i<=700; i+=100){
-            this.p.rect(pos,i,this.amplitude.getLevel()*100);
+            
+            if(i%200==0){
+                this.p.fill(0)
+                this.p.rect(pos,i,this.amplitude.getLevel()*200);
+            }else{
+                this.p.fill(255)
+                this.p.ellipse(pos,i,this.amplitude.getLevel()*200);
+            }
+           
         }
     }
 

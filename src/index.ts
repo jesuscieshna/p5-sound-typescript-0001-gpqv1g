@@ -33,6 +33,7 @@ const sketch = (p: p5) => {
   p.setup = () => {
     let cnv = p.createCanvas(canvasWidth, canvasHeight);
     cnv.mouseClicked(togglePlay);
+    p.rectMode('center');
   };
 
   function togglePlay() {
