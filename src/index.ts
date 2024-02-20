@@ -1,6 +1,7 @@
 import './global.js';
 import 'p5/lib/addons/p5.sound';
 import * as p5 from 'p5';
+import { Prueba } from './prueba/prueba.js';
 
 const sketch = (p: p5) => {
   const canvasWidth = 800;
@@ -15,8 +16,10 @@ const sketch = (p: p5) => {
   };
 
   p.setup = () => {
-    p.createCanvas(canvasWidth, canvasHeight);
-    sound.loop();
+    let cnv = p.createCanvas(canvasWidth, canvasHeight);
+    cnv.mouseClicked(()=>{
+        sound.loop();
+    });
     fft = new p5.FFT(0.2, 8192);
     fft.setInput(sound);
   };
@@ -52,3 +55,5 @@ const sketch = (p: p5) => {
 };
 
 new p5(sketch);
+
+
