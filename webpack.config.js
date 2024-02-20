@@ -14,14 +14,11 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.js', 'jsx', 'tsx'],
   },
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  devServer: {
-    static: 'dist',
-    open: true,
-  },
+  target:'node'
 };
