@@ -20,14 +20,21 @@ export class Sound{
         return this.loadedSound;
     }
 
-    public draw(pos:number){
-        this.loadedSound.setVolume(1);
-        this.p.stroke(255-pos,255,pos);
+    public draw(pos:number,frameActual:number){
+        this.p.stroke(255-pos,255,pos,200);
+
+        for(let i = -60; i<=800; i++){
+            this.p.strokeWeight(1);
+            for(let j=0; j<=60; j+=30){
+                this.p.point(pos+(Math.sin((i/(pos))+(frameActual/4))*20)+(j/10),i+j);
+            }
+        }
+        this.p.stroke(255-pos,255,pos,200);
         this.p.strokeWeight(5);
         for(let i = 100; i<=700; i+=100){
             
             if(i%200==0){
-                this.p.fill(0)
+                this.p.fill(80)
                 this.p.rect(pos,i,this.amplitude.getLevel()*200);
             }else{
                 this.p.fill(255)
@@ -35,6 +42,7 @@ export class Sound{
             }
            
         }
+
     }
 
 }

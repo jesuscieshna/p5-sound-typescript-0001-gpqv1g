@@ -6,7 +6,7 @@ import * as myLibrary from '../YiizReactiveImages/index';
 
 let stems : myLibrary.Sound[] = [];
 let isPlaying: boolean = false;
-
+let frameActual=0;
 const sketch = (p: p5) => {
   const canvasWidth = 800;
   const canvasHeight = 800;
@@ -51,16 +51,23 @@ const sketch = (p: p5) => {
   }
 
   p.draw = () => {
-    p.background(0);
+    let c1 = p.color(0,0,70);
+    let c2 = p.color(100, 0, 100);
+    for(let y=0; y<800; y++){
+      let n = p.map(y,0,800,0,1);
+      let newc = p.lerpColor(c1,c2,n);
+      p.stroke(newc);
+      p.line(0,y,800, y);
+    }
     let i : number = 67;
     stems.forEach(stem=>{
-      stem.draw(i);
+      stem.draw(i,frameActual);
       i+=133;
     });
+    frameActual++;
   };
 };
 
 new p5(sketch);
-
 
 
